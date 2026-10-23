@@ -119,7 +119,6 @@
     <tr><td>Kısa tanıtım</td><td><code>&lt;p class="lead"&gt;</code></td><td>Ürünün ne olduğunu anlatan bir paragraf</td></tr>
     <tr><td>Bilgi satırları</td><td><code>&lt;dl class="specs"&gt;</code></td><td>Ölçü, malzeme, kutu içeriği, kullanım</td></tr>
     <tr><td>WhatsApp bağlantısı</td><td><code>href="https://wa.me/..."</code></td><td>Aşağıdaki kurala bakın</td></tr>
-    <tr><td>E-posta bağlantısı</td><td><code>href="mailto:..."</code></td><td>Konu satırına ürün adı</td></tr>
   </table>
 
   <h3>WhatsApp bağlantısını doğru yazmak</h3>
@@ -130,8 +129,8 @@
 encodeURIComponent('Güneş Yıldızı')
 // "G%C3%BCne%C5%9F%20Y%C4%B1ld%C4%B1z%C4%B1"</code></pre>
   <p>Bağlantının tamamı şöyle görünür:</p>
-  <pre><code>href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20%22G%C3%BCne%C5%9F%22%20neon%20tabela%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."</code></pre>
-  <div class="note warn"><code>905XXXXXXXXX</code> yerine işletmenin gerçek WhatsApp numarasını yazın (ülke kodu ile, başında + olmadan). Sitedeki mevcut bağlantılar <code>90XXXXXXXXXX</code> ile yazılmış; numara henüz tanımlanmadıysa bu yer bir sonraki adımda güncellenmelidir.</div>
+  <pre><code>href="https://wa.me/905300602024?text=Merhaba%2C%20%22G%C3%BCne%C5%9F%22%20neon%20tabela%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."</code></pre>
+  <div class="note"><code>905300602024</code> numarası sitedeki tüm WhatsApp bağlantılarında kullanılır (+90 530 060 20 24). Yeni bir numara gerekirse bu numarayı her bağlantıda değiştirmeniz gerekir.</div>
 
   <h3>Yeni ürün sayfasının sonundaki "Aynı kategoriden" bölümü</h3>
   <p>Ürün sayfasının altında benzer ürünlerin kartları yer alır. Bu bölümü dilediğiniz ürünlerle değiştirebilir ya da kaldırabilirsiniz. Her kart, bir ürün sayfasının bağlantısını, resmini ve adını içerir.</p>
@@ -172,7 +171,6 @@ encodeURIComponent('Güneş Yıldızı')
     <li><code>urunler.html</code> açıldığında yeni kart görünüyor ve resmi doğru.</li>
     <li>Karta tıklayınca ürün sayfası açılıyor; başlık, resim ve bilgi satırları doğru.</li>
     <li>Ürün sayfasındaki <strong>Bu ürün için bilgi alın</strong> düğmesi WhatsApp'ta doğru mesajı açıyor.</li>
-    <li><strong>E-posta gönderin</strong> düğmesi konu satırında ürün adını gösteriyor.</li>
     <li>Sayfa telefon genişliğinde de düzgün görünüyor (tarayıcının geliştirici modunda deneyin).</li>
     <li>Ana sayfayı eklediyseniz "Öne çıkanlar" bölümünde kart doğru görünüyor.</li>
   </ul>
