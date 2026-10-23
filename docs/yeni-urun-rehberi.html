@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yeni ürün ekleme rehberi | Şirin Neon</title>
+<style>
+  :root {
+    --bg: #f7f5f9; --panel: #ffffff; --ink: #1c1922; --muted: #6b6474;
+    --accent: #d6336c; --accent-2: #0b7285; --line: #e3dfe8; --code: #1c1922; --code-ink: #f4f0f6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141219; --panel: #1f1c27; --ink: #f4f0f6; --muted: #aba4b5;
+      --accent: #ff6aa8; --accent-2: #7fe3ff; --line: #332e3d; --code: #0c0a10; --code-ink: #f4f0f6;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141219; --panel: #1f1c27; --ink: #f4f0f6; --muted: #aba4b5;
+    --accent: #ff6aa8; --accent-2: #7fe3ff; --line: #332e3d; --code: #0c0a10; --code-ink: #f4f0f6;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 48px 0 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+  header h1 { margin: 0 0 8px; font-size: 2rem; color: var(--accent); }
+  header p { margin: 0; color: var(--muted); }
+  nav.toc { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-bottom: 32px; }
+  nav.toc h2 { margin: 0 0 8px; font-size: 1rem; }
+  nav.toc ol { margin: 0; padding-left: 20px; }
+  nav.toc a { color: var(--accent-2); }
+  section { margin-bottom: 40px; }
+  h2 { font-size: 1.5rem; margin: 0 0 12px; padding-top: 8px; }
+  h3 { font-size: 1.1rem; margin: 24px 0 8px; }
+  p, li { max-width: 70ch; }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 0.92em; }
+  pre { background: var(--code); color: var(--code-ink); border-radius: 12px; padding: 16px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; }
+  pre code { background: none; border: 0; padding: 0; color: inherit; }
+  .note { background: var(--panel); border-left: 4px solid var(--accent-2); padding: 12px 16px; border-radius: 8px; margin: 16px 0; }
+  .warn { border-left-color: var(--accent); }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .step h2 { margin-top: 0; }
+  .step .num { display: inline-block; background: var(--accent); color: #fff; border-radius: 999px; width: 28px; height: 28px; text-align: center; line-height: 28px; font-weight: 700; margin-right: 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+  th, td { text-align: left; border-bottom: 1px solid var(--line); padding: 8px 6px; vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  .check { list-style: none; padding-left: 0; }
+  .check li::before { content: "☐  "; color: var(--accent-2); }
+  footer { color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); padding: 24px 0 48px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Yeni ürün ekleme rehberi</h1>
+  <p>Şirin Neon sitesine yeni bir ürün eklemek için adım adım yapılacaklar. Teknik bilgi gerektirmez; her adımda hangi dosyayı açacağınız ve ne yazacağınız gösterilir.</p>
+</header>
+
+<nav class="toc">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#genel">Site nasıl çalışır?</a></li>
+    <li><a href="#hazirlik">Başlamadan önce</a></li>
+    <li><a href="#adim1">Resmi hazırlayın ve adlandırın</a></li>
+    <li><a href="#adim2">Ürün sayfasını oluşturun</a></li>
+    <li><a href="#adim3">Ürünler listesine kart ekleyin</a></li>
+    <li><a href="#adim4">Ana sayfaya ekleyin (isteğe bağlı)</a></li>
+    <li><a href="#adim5">Site haritasına ekleyin</a></li>
+    <li><a href="#test">Kontrol edin</a></li>
+    <li><a href="#sorunlar">Sık karşılaşılan sorunlar</a></li>
+  </ol>
+</nav>
+
+<section id="genel">
+  <h2>Site nasıl çalışır?</h2>
+  <p>Site, sunucuda çalışan bir program değil; düz dosyalardan oluşan bir web sitesidir. Ürün eklemek, ilgili dosyaları düzenlemek demektir. Bir ürün dört yerde görünür:</p>
+  <table>
+    <tr><th>Yer</th><th>Dosya</th><th>Ne işe yarar</th></tr>
+    <tr><td>Ürünler listesi</td><td><code>urunler.html</code></td><td>Tüm ürünlerin kartları</td></tr>
+    <tr><td>Ürün sayfası</td><td><code>urun/ürün-adı.html</code></td><td>Her ürünün kendi sayfası</td></tr>
+    <tr><td>Ana sayfa (isteğe bağlı)</td><td><code>index.html</code></td><td>"Öne çıkanlar" bölümü</td></tr>
+    <tr><td>Site haritası</td><td><code>sitemap.xml</code></td><td>Arama motorlarına sayfa listesi</td></tr>
+  </table>
+  <p>Resimler <code>assets/img/products/</code> klasöründe durur. Her ürün bu klasördeki bir resmi kullanır.</p>
+</section>
+
+<section id="hazirlik">
+  <h2>Başlamadan önce</h2>
+  <ul class="check">
+    <li>Ürünün resmi hazır (JPEG tercih edilir). Yatay ya da kare, net ve ürünü tam gösteren bir kare resim iyi sonuç verir.</li>
+    <li>Bir metin editörü açın. Önerilen: <strong>VS Code</strong>. Mac'te TextEdit'i kullanacaksanız <em>Biçim → Düz Metin</em> seçili olmalı.</li>
+    <li>Ürün için bir <strong>kısa ad</strong> belirleyin (ör. <em>Güneş</em>) ve bir <strong>dosya adı</strong> seçin (ör. <code>gunes</code>). Dosya adında boşluk ve Türkçe karakter kullanılmaz.</li>
+    <li>Ürünün açıklamasını ve bilgilerini (ölçü, malzeme, kullanım) hazır tutun.</li>
+  </ul>
+  <div class="note">Bu rehberdeki örnekler için yeni ürünün adını <strong>Güneş</strong>, dosya adını <strong>gunes</strong>, resim numarasını <strong>urun13</strong> kabul edeceğiz.</div>
+</section>
+
+<div class="step" id="adim1">
+  <h2><span class="num">1</span>Resmi hazırlayın ve adlandırın</h2>
+  <p>Resmi <code>assets/img/products/</code> klasörüne koyun. Adı, mevcut resimlerle aynı biçimde olmalı: <code>urun</code> + iki haneli sıra numarası + uzantı.</p>
+  <ul>
+    <li>Mevcut en son resim <code>urun12.jpeg</code> ise yeni resim <code>urun13.jpeg</code> olur.</li>
+    <li>Hangi numaranın boş olduğunu görmek için klasördeki dosyalara bakın.</li>
+  </ul>
+  <div class="note warn">Resmi <code>urun13.JPG</code> ya da <code>Güneş.jpeg</code> gibi adlandırmayın. Adres çubuğunda sorun çıkarır. Uzantı büyük harfli olacaksa küçük harfe çevirin.</div>
+</div>
+
+<div class="step" id="adim2">
+  <h2><span class="num">2</span>Ürün sayfasını oluşturun</h2>
+  <p>Mevcut bir ürün sayfasını kopyalayıp yeni adla kaydedin. Örneğin <code>urun/kalp.html</code> dosyasını kopyalayıp <code>urun/gunes.html</code> adıyla kaydedin. Sayfanın içindeki şu alanları değiştirin:</p>
+  <table>
+    <tr><th>Ne</th><th>Nerede</th><th>Örnek (Güneş için)</th></tr>
+    <tr><td>Sayfa başlığı</td><td><code>&lt;title&gt;</code></td><td><code>Güneş neon tabela | Şirin Neon</code></td></tr>
+    <tr><td>Açıklama</td><td><code>meta name="description"</code> ve <code>og:description</code></td><td>Ürünü 1-2 cümleyle anlatın</td></tr>
+    <tr><td>Sosyal medya başlığı</td><td><code>og:title</code></td><td>Başlıkla aynı</td></tr>
+    <tr><td>Resim</td><td><code>&lt;img src="../assets/img/products/urun13.jpeg" alt="Güneş"&gt;</code></td><td>Resim adı ve açıklama</td></tr>
+    <tr><td>Ürün adı</td><td><code>&lt;h1&gt;</code></td><td><code>&lt;h1&gt;Güneş&lt;/h1&gt;</code></td></tr>
+    <tr><td>Kısa tanıtım</td><td><code>&lt;p class="lead"&gt;</code></td><td>Ürünün ne olduğunu anlatan bir paragraf</td></tr>
+    <tr><td>Bilgi satırları</td><td><code>&lt;dl class="specs"&gt;</code></td><td>Ölçü, malzeme, kutu içeriği, kullanım</td></tr>
+    <tr><td>WhatsApp bağlantısı</td><td><code>href="https://wa.me/..."</code></td><td>Aşağıdaki kurala bakın</td></tr>
+    <tr><td>E-posta bağlantısı</td><td><code>href="mailto:..."</code></td><td>Konu satırına ürün adı</td></tr>
+  </table>
+
+  <h3>WhatsApp bağlantısını doğru yazmak</h3>
+  <p>Bağlantıdaki metin, adres çubuğunda okunabilir olmalıdır. Boşluk <code>%20</code>, tırnak <code>%22</code> ile yazılır. Türkçe karakterler de kodlanır. Kodlanmış ürün adını hazırlamak için tarayıcınızın konsolunu (Chrome: <em>Cmd+Option+J</em> / <em>Ctrl+Shift+J</em>) açın ve şunu yazın:</p>
+  <pre><code>encodeURIComponent('Güneş')
+// "G%C3%BCne%C5%9F"
+
+encodeURIComponent('Güneş Yıldızı')
+// "G%C3%BCne%C5%9F%20Y%C4%B1ld%C4%B1z%C4%B1"</code></pre>
+  <p>Bağlantının tamamı şöyle görünür:</p>
+  <pre><code>href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20%22G%C3%BCne%C5%9F%22%20neon%20tabela%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."</code></pre>
+  <div class="note warn"><code>905XXXXXXXXX</code> yerine işletmenin gerçek WhatsApp numarasını yazın (ülke kodu ile, başında + olmadan). Sitedeki mevcut bağlantılar <code>90XXXXXXXXXX</code> ile yazılmış; numara henüz tanımlanmadıysa bu yer bir sonraki adımda güncellenmelidir.</div>
+
+  <h3>Yeni ürün sayfasının sonundaki "Aynı kategoriden" bölümü</h3>
+  <p>Ürün sayfasının altında benzer ürünlerin kartları yer alır. Bu bölümü dilediğiniz ürünlerle değiştirebilir ya da kaldırabilirsiniz. Her kart, bir ürün sayfasının bağlantısını, resmini ve adını içerir.</p>
+</div>
+
+<div class="step" id="adim3">
+  <h2><span class="num">3</span>Ürünler listesine kart ekleyin</h2>
+  <p><code>urunler.html</code> dosyasını açın. <code>&lt;ul class="grid" id="katalog"&gt;</code> ile başlayan listenin içinde mevcut bir kartı (<code>&lt;li class="card"&gt;</code> ile <code>&lt;/li&gt;</code> arasındaki bloğu) kopyalayıp listenin sonuna yapıştırın. Aşağıdaki üç değeri değiştirin:</p>
+<pre><code>&lt;li class="card"&gt;
+  &lt;a href="urun/gunes.html"&gt;
+    &lt;div class="wall"&gt;&lt;img class="wall-img" src="assets/img/products/urun13.jpeg" alt="Güneş" loading="lazy"&gt;&lt;/div&gt;
+    &lt;div class="card-txt"&gt;&lt;h3&gt;Güneş&lt;/h3&gt;&lt;/div&gt;
+  &lt;/a&gt;
+&lt;/li&gt;</code></pre>
+  <ul>
+    <li><code>href</code>: ürün sayfasının yolu.</li>
+    <li><code>src</code>: resmin yolu (<code>urunler.html</code> içinde <code>assets/...</code> ile başlar).</li>
+    <li><code>alt</code> ve <code>&lt;h3&gt;</code>: ürün adı.</li>
+  </ul>
+  <div class="note">Kartın altında kategori yazısı olmaz; Ürünler sayfasında kategori bulunmuyor.</div>
+</div>
+
+<div class="step" id="adim4">
+  <h2><span class="num">4</span>Ana sayfaya ekleyin (isteğe bağlı)</h2>
+  <p>Ürünün ana sayfadaki "Öne çıkanlar" bölümünde yer almasını istiyorsanız <code>index.html</code> dosyasında mevcut bir kartı kopyalayın. Yalnızca <code>href</code>, <code>src</code>, <code>alt</code> ve <code>&lt;h3&gt;</code> değerlerini değiştirin. Bu adım isteğe bağlıdır.</p>
+</div>
+
+<div class="step" id="adim5">
+  <h2><span class="num">5</span>Site haritasına ekleyin</h2>
+  <p><code>sitemap.xml</code> dosyasında, diğer ürün satırlarının yanına şunu ekleyin:</p>
+  <pre><code>&lt;url&gt;&lt;loc&gt;https://sirinneon.com.tr/urun/gunes.html&lt;/loc&gt;&lt;/url&gt;</code></pre>
+</div>
+
+<section id="test">
+  <h2>Kontrol edin</h2>
+  <p>Değişiklikleri kaydettikten sonra dosyaları tarayıcıda açın ve şunları kontrol edin:</p>
+  <ul class="check">
+    <li><code>urunler.html</code> açıldığında yeni kart görünüyor ve resmi doğru.</li>
+    <li>Karta tıklayınca ürün sayfası açılıyor; başlık, resim ve bilgi satırları doğru.</li>
+    <li>Ürün sayfasındaki <strong>Bu ürün için bilgi alın</strong> düğmesi WhatsApp'ta doğru mesajı açıyor.</li>
+    <li><strong>E-posta gönderin</strong> düğmesi konu satırında ürün adını gösteriyor.</li>
+    <li>Sayfa telefon genişliğinde de düzgün görünüyor (tarayıcının geliştirici modunda deneyin).</li>
+    <li>Ana sayfayı eklediyseniz "Öne çıkanlar" bölümünde kart doğru görünüyor.</li>
+  </ul>
+  <div class="note">Dosyaları kaydettikten sonra, sayfayı yenilemek için tarayıcıda <em>Cmd+R</em> / <em>Ctrl+R</em> tuşlarına basın.</div>
+</section>
+
+<section id="sorunlar">
+  <h2>Sık karşılaşılan sorunlar</h2>
+  <table>
+    <tr><th>Belirti</th><th>Nedeni ve çözümü</th></tr>
+    <tr><td>Resim görünmüyor</td><td>Dosya adı ya da yol yanlış. <code>urun13.jpeg</code> adının <code>assets/img/products/</code> içinde olduğundan ve <code>src</code> yolunun doğru olduğundan emin olun. Ürün sayfasında yol <code>../assets/...</code>, listede <code>assets/...</code> ile başlar.</td></tr>
+    <tr><td>Ürün sayfası 404 veriyor</td><td>Kart bağlantısındaki dosya adı ile <code>urun/</code> klasöründeki dosya adı birebir aynı olmalı (büyük-küçük harf ve tire dahil).</td></tr>
+    <tr><td>WhatsApp mesajı bozuk görünüyor</td><td>Ürün adında boşluk ya da Türkçe karakter kodlanmamış. Yukarıdaki <code>encodeURIComponent</code> yöntemini kullanın.</td></tr>
+    <tr><td>Değişiklik görünmüyor</td><td>Tarayıcı önbelleği. Sayfayı yenileyin ya da gizli pencerede açın.</td></tr>
+    <tr><td>Sayfa bozuk, bir şeyler üst üste biniyor</td><td>Bir <code>&lt;li&gt;</code> ya da <code>&lt;div&gt;</code> etiketi kapatılmamış olabilir. Kopyaladığınız bloğun başında ve sonunda aynı etiketlerin bulunduğunu kontrol edin.</td></tr>
+  </table>
+</section>
+
+<div class="note">Bu rehberde anlatılan dosyaların tamamı <code>sirinneon</code> klasöründe bulunur. Değişiklikleri yayınlama yöntemi (sunucuya yükleme, git ya da başka bir yol) sitenizin barındırma düzenine göre değişir; bu rehber yalnızca dosyaların hazırlanmasını anlatır.</div>
+
+<footer>
+  Şirin Neon — yeni ürün ekleme rehberi. Son güncelleme: sitenin mevcut yapısına göre hazırlanmıştır.
+</footer>
+
+</div>
+</body>
+</html>
